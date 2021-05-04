@@ -1,0 +1,28 @@
+<p>categories-list</p>
+
+<section style="float: left; width: 40%;">
+    <fieldset>
+        <legend>Input Data</legend>
+        <label for="">Text</label><input type="text" [(ngModel)]="textZone"><br>
+        <label for="">Color</label><input type="text" [(ngModel)]="colorZone"><br><br>
+        <input type="submit" value="Add Categorie" (click)="addCategorie()">
+    </fieldset>
+</section>
+
+<section style="float: right; width: 40%;">
+    <fieldset>
+        <legend>Output Data</legend>
+        <div *ngFor='let categorie of categoriesTab'>
+        <app-categorie-item [text]="categorie.text" [color]="categorie.color"></app-categorie-item>
+    </div>
+    </fieldset>
+
+</section>
+
+<ng-template #choix2> <span>Aucune categorie!!</span></ng-template>
+
+
+<br>
+<ul *ngFor='let element of tab1, let i=index' [ngSwitch]="element.length" >
+    <li *ngSwitchCase="7"><span>Position {{i}}: </span>{{element}}</li>
+</ul>

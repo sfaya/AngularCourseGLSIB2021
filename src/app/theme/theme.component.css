@@ -1,0 +1,16 @@
+.dark{
+    background-color: dimgrey;
+    color: floralwhite;
+    font-size: large;
+    font-style: oblique;
+}
+.light{
+    background-color:gainsboro;
+    color:#191970;
+    font-size: medium;
+    font-style: italic;
+}
+
+.pinky{
+    background-color: pink;
+}

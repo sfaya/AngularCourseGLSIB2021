@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'GLSIE';
+   var1='';
+f1(){
+  alert("test binding");
+}
+
 }
