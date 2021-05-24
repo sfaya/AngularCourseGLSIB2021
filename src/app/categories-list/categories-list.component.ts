@@ -1,25 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import{Categorie} from '../categorie';
+import { Router } from '@angular/router';
+import { CrudCategorieService } from '../crud-category.service';
 
 @Component({
   selector: 'app-categories-list',
   templateUrl: './categories-list.component.html',
-  styleUrls: ['./categories-list.component.css']
+  styleUrls: ['./categories-list.component.css'],
 })
 export class CategoriesListComponent implements OnInit {
-
-  textZone='';
-  colorZone='';
-  categoriesTab:Categorie[]=[];
-  tab1=['Bonjour','Bonsoir','chehia tayba'];
-  cpt=this.categoriesTab.length;
-
-  constructor() { }
+  categories: any = [];
+  categorieName = '';
+  categorieId = 0;
+  constructor(
+    private categoryservice: CrudCategorieService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
+    this.fetchcategories();
   }
-  addCategorie(){
-this.categoriesTab.push({text:this.textZone, color:this.colorZone});
-console.log(this.categoriesTab.length);
+
+  fetchcategories() {
+    return this.categoryservice.getCategories().subscribe((data: {}) => {
+      this.categories = data;
+    });
+  }
+
+  createCategory() {
+    this.categoryservice
+      .create({ id: this.categorieId, name: this.categorieName })
+      .subscribe((res) => {
+        this.fetchcategories();
+      });
+  }
+
+  remove(id: any) {
+    this.categoryservice.delete(id).subscribe((res) => {
+      this.fetchcategories();
+    });
+  }
+
+  goToFormation() {
+    this.route.navigate(['formations']);
+  }
+  showDetails(id: any) {
+    this.route.navigate(['categorie', id]);
   }
 }

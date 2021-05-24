@@ -1,0 +1,12 @@
+selected Id: {{ categorieId }}
+
+<button class="btn btn-primary" (click)="goPrev()">Prev</button>
+<button class="btn btn-primary" (click)="goNext()">Next</button>
+<br /><br />
+<button class="btn">
+  <a [routerLink]="['update']" [state]="categorieId">Update</a>
+</button>
+<br />
+<div>
+  <router-outlet></router-outlet>
+</div>

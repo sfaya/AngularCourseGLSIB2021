@@ -1,6 +1,8 @@
 export class Categorie {
-
-constructor(public text:string, public color:string, public desc?:string){}
+  constructor(
+    public id: number,
+    public name: string,
+    public color?: string,
+    public desc?: string
+  ) {}
 }
-
-

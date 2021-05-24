@@ -1,28 +1,42 @@
-<p>categories-list</p>
+<h5>Categories List</h5>
 
-<section style="float: left; width: 40%;">
-    <fieldset>
-        <legend>Input Data</legend>
-        <label for="">Text</label><input type="text" [(ngModel)]="textZone"><br>
-        <label for="">Color</label><input type="text" [(ngModel)]="colorZone"><br><br>
-        <input type="submit" value="Add Categorie" (click)="addCategorie()">
-    </fieldset>
+<table class="table table-bordered" style="width: 60%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of categories">
+      {{
+        category.id
+      }}
+      <td><app-categorie-item [value]="category"></app-categorie-item></td>
+      <td>
+        <span class="text-primary" (click)="remove(category.id)">Delete</span>
+      </td>
+      <td>
+        <span class="text-primary" (click)="showDetails(category.id)"
+          >Details</span
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>
+<section>
+  <table>
+    <tr>
+      <td><label for="">category Id</label></td>
+      <td><input type="text" [(ngModel)]="categorieId" /></td>
+
+      <td><label for="">category Name</label></td>
+      <td><input type="text" [(ngModel)]="categorieName" /></td>
+
+      <td><input type="submit" value="Add" (click)="createCategory()" /></td>
+    </tr>
+  </table>
 </section>
 
-<section style="float: right; width: 40%;">
-    <fieldset>
-        <legend>Output Data</legend>
-        <div *ngFor='let categorie of categoriesTab'>
-        <app-categorie-item [text]="categorie.text" [color]="categorie.color"></app-categorie-item>
-    </div>
-    </fieldset>
-
-</section>
-
-<ng-template #choix2> <span>Aucune categorie!!</span></ng-template>
-
-
-<br>
-<ul *ngFor='let element of tab1, let i=index' [ngSwitch]="element.length" >
-    <li *ngSwitchCase="7"><span>Position {{i}}: </span>{{element}}</li>
-</ul>
+<button (click)="goToFormation()">Go to Trainings</button>
